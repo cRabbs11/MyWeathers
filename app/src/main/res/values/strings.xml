@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyWeathers</string>
+
+    <string name="settings">Настройки</string>
 </resources>
