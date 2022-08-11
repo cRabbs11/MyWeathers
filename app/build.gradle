@@ -54,4 +54,7 @@ dependencies {
 
     kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
 
+    //Google Maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
 }
