@@ -19,4 +19,10 @@ class PointPageFragment: Fragment() {
         binding = FragmentPointPageBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val temp = "+25\u00b0"
+        binding.temp.text = temp
+    }
 }

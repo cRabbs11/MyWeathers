@@ -5,10 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/text"
-        android:text="OptionsFragment"
+        android:id="@+id/theme"
+        android:text="@string/theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/clear_cache"
+        android:text="@string/clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/theme"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

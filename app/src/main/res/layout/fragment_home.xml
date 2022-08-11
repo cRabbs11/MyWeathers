@@ -5,8 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/empty_list_text"
         android:text="homeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -17,8 +24,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="@dimen/margin_normal"
         android:src="@drawable/ic_baseline_add_24"
-        android:layout_marginEnd="24dp"/>
+        android:layout_marginEnd="@dimen/margin_normal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
