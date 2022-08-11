@@ -2,4 +2,19 @@
     <string name="app_name">MyWeathers</string>
 
     <string name="settings">Настройки</string>
+    <string name="point_name">название места</string>
+    <string name="adding_method">как добавить</string>
+    <string name="add">добавить</string>
+    <string name="description">description</string>
+    <string name="humidity">humidity</string>
+    <string name="wind">wind</string>
+    <string name="pressure">pressure</string>
+
+    <string name="theme">theme</string>
+    <string name="clear_cache">clear cache</string>
+
+    <string name="add_by_auto_coords">по геолокации</string>
+    <string name="add_by_manual_coords">ввести координаты</string>
+    <string name="add_by_input_city">ввести город</string>
+    <string name="add_by_google_map">выбрать на карте</string>
 </resources>

@@ -19,4 +19,20 @@ class AddPointFragment: Fragment() {
         binding = FragmentAddPointBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        //val ADDING_METHODS = arrayOf(
+        //    getString(R.string.add_by_auto_coords),
+        //    getString(R.string.add_by_manual_coords),
+        //    getString(R.string.add_by_input_city),
+        //    getString(R.string.add_by_google_map)
+        //)
+//
+        //val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, ADDING_METHODS)
+        //val text = binding.addingMethods.editText as AutoCompleteTextView
+        //text.setAdapter(adapter)
+    }
 }
