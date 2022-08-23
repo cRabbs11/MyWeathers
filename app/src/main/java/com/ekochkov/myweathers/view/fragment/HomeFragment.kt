@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.ekochkov.myweathers.data.entity.Point
 import com.ekochkov.myweathers.databinding.FragmentHomeBinding
 import com.ekochkov.myweathers.diff.PointDiff
+import com.ekochkov.myweathers.utils.PointItemOffsetsDecoration
 import com.ekochkov.myweathers.utils.PointListAdapter
 import com.ekochkov.myweathers.view.activity.MainActivity
 import com.ekochkov.myweathers.viewModel.HomeFragmentViewModel
@@ -62,6 +63,8 @@ class HomeFragment: Fragment() {
 
         adapter = PointListAdapter()
         binding.recyclerView.adapter = adapter
+
+        binding.recyclerView.addItemDecoration(PointItemOffsetsDecoration(requireContext()))
 
         viewModel.pointsListLiveData.observe(viewLifecycleOwner) { cityList->
             cityList.forEach {
