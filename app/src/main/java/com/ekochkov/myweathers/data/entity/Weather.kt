@@ -1,8 +1,9 @@
 package com.ekochkov.myweathers.data.entity
 
 data class Weather(
-    val description: String,
-    val icon: String,
-    val id: Int,
-    val main: String
-)
+    val temp: Int,
+    val temp_max: Int,
+    val temp_min: Int,
+    val description: String
+) {
+}
