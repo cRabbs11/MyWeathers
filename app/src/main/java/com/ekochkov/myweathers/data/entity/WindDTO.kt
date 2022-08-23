@@ -1,6 +1,6 @@
 package com.ekochkov.myweathers.data.entity
 
-data class Wind(
+data class WindDTO(
     val deg: Int,
     val speed: Double
 )

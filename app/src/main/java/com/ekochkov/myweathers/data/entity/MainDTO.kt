@@ -1,6 +1,6 @@
 package com.ekochkov.myweathers.data.entity
 
-data class Main(
+data class MainDTO(
     val feels_like: Double,
     val humidity: Int,
     val pressure: Int,

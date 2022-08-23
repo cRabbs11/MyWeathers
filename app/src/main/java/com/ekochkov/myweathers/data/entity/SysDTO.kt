@@ -1,6 +1,6 @@
 package com.ekochkov.myweathers.data.entity
 
-data class Sys(
+data class SysDTO(
     val country: String,
     val id: Int,
     val message: Double,
