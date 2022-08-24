@@ -30,6 +30,8 @@ class PointViewHolder(private val binding: ItemPointBinding) : RecyclerView.View
             "03n" -> return R.drawable.icon_cloud
             "04d" -> return R.drawable.icon_overcast_cloudy
             "04n" -> return R.drawable.icon_overcast_cloudy
+            "10d" -> return R.drawable.icon_light_rain_day
+            "10n" -> return R.drawable.icon_light_rain_day
             else -> return 0
         }
     }
