@@ -1,6 +1,7 @@
 package com.ekochkov.myweathers.domain
 
 import android.util.Log
+import com.ekochkov.myweathers.data.dao.PointDao
 import com.ekochkov.myweathers.data.entity.*
 import com.ekochkov.myweathers.utils.API_Constants
 import com.ekochkov.myweathers.utils.API_KEYS
@@ -11,7 +12,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterface,
-private val geoDBRetrofitInterface: GeoDBRetrofitInterface) {
+private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao) {
+
+    fun getPoints() : List<Point> {
+        return pointDao.getPoints()
+    }
+
+    fun savePoint(point: Point) {
+        pointDao.insertPoint(point)
+    }
 
     fun getCities(listener: ResponseCallback<List<Point>>) {
         geoDBRetrofitInterface.getCities(

@@ -16,7 +16,7 @@ class App: Application() {
         dagger = DaggerAppComponent.builder()
             .dataModule(DataModule())
             .remoteModule(RemoteModule())
-            .domainModule(DomainModule())
+            .domainModule(DomainModule(this))
             .build()
     }
 
