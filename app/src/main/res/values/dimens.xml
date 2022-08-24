@@ -13,4 +13,6 @@
     <dimen name="corner_radius_normal">15dp</dimen>
 
     <dimen name="offset_5">5dp</dimen>
+    <dimen name="offset_7">7dp</dimen>
+    <dimen name="offset_15">15dp</dimen>
 </resources>
