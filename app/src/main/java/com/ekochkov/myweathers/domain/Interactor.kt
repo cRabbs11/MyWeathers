@@ -7,6 +7,7 @@ import com.ekochkov.myweathers.utils.API_Constants
 import com.ekochkov.myweathers.utils.API_KEYS
 import com.ekochkov.myweathers.utils.GeoDBRetrofitInterface
 import com.ekochkov.myweathers.utils.OpenWeatherRetrofitInterface
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +15,7 @@ import retrofit2.Response
 class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterface,
 private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao) {
 
-    fun getPoints() : List<Point> {
+    fun getPoints() : Flow<List<Point>> {
         return pointDao.getPoints()
     }
 

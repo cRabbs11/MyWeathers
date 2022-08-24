@@ -23,12 +23,15 @@ import com.ekochkov.myweathers.view.activity.MainActivity
 import com.ekochkov.myweathers.viewModel.HomeFragmentViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 class HomeFragment: Fragment() {
 
     lateinit var adapter: PointListAdapter
     lateinit var binding : FragmentHomeBinding
     private val viewModel : HomeFragmentViewModel by viewModels()
+    private lateinit var scope: CoroutineScope
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -73,6 +76,16 @@ class HomeFragment: Fragment() {
             updateRecyclerView(cityList)
         }
 
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.pointsListData.collect {
+                    withContext(Dispatchers.Main) {
+                        updateRecyclerView(it)
+                    }
+                }
+            }
+        }
+
         binding.fabAdd.setOnClickListener {
             (activity as MainActivity).openAddPointFragment()
         }
@@ -86,6 +99,11 @@ class HomeFragment: Fragment() {
         } else {
             requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
     }
 
     private fun requestPermission(permission: String) {
