@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.Executors
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterface,
 private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao) {
@@ -19,8 +22,13 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
         return pointDao.getPoints()
     }
 
-    fun savePoint(point: Point) {
-        pointDao.insertPoint(point)
+    suspend fun savePoint(point: Point): Long {
+        return suspendCoroutine { continuation ->
+            Executors.newSingleThreadExecutor().execute {
+                val result = pointDao.insertPoint(point)
+                continuation.resume(result)
+            }
+        }
     }
 
     fun getCities(listener: ResponseCallback<List<Point>>) {
