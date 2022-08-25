@@ -20,4 +20,12 @@ interface GeoDBRetrofitInterface {
         @Query("countryIds") countryIds: String,
         @Query("minPopulation") minPopulation: Int
     ) : Call<GeoDBNearbyCitiesDataDTO>
+
+    @GET("geo/cities")
+    suspend fun getCitiesSuspend(
+        @Query("limit") limit: Int,
+        @Query("types") types: String,
+        @Query("countryIds") countryIds: String,
+        @Query("minPopulation") minPopulation: Int
+    ) : GeoDBNearbyCitiesDataDTO
 }
