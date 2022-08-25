@@ -1,39 +1,54 @@
 package com.ekochkov.myweathers.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ekochkov.myweathers.data.entity.Point
+import com.ekochkov.myweathers.data.entity.toCityList
 import com.ekochkov.myweathers.domain.Interactor
 import com.ekochkov.myweathers.domain.ResponseCallback
 import com.ekochkov.myweathers.utils.App
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class HomeFragmentViewModel: ViewModel() {
 
     val pointsListLiveData = MutableLiveData<List<Point>>()
 
-    val pointsListData: Flow<List<Point>>
+    private lateinit var scope: CoroutineScope
+
 
     @Inject
     lateinit var interactor: Interactor
 
     init {
         App.instance.dagger.inject(this)
-        pointsListData = interactor.getPoints()
+        getAllPoints()
     }
 
-    fun getCitiesNearbyLocation(lat: Double, lon: Double) {
-        //interactor.getCities(object: ResponseCallback<List<Point>> {
-        //    override fun onSuccess(pointList: List<Point>) {
-        //        Log.d("BMTH","size = ${pointList.size}")
-        //        getWeather(pointList)
-        //    }
-//
-        //    override fun onFailure() {
-        //    }
-        //})
+    fun getCities() {
+        interactor.getCities(object: ResponseCallback<List<Point>> {
+            override fun onSuccess(pointList: List<Point>) {
+                getWeather(pointList)
+            }
+
+            override fun onFailure() {
+            }
+        })
+    }
+
+    private fun getAllPoints() {
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                interactor.getPointsFlow().collect {
+                    val citiesData = interactor.getCitiesPoints()
+                    if (citiesData!=null) {
+                        val list = it + citiesData.toCityList()
+                        getWeather(list)
+                    }
+                }
+            }
+        }
     }
 
     private fun getWeather(list: List<Point>) {
@@ -45,6 +60,11 @@ class HomeFragmentViewModel: ViewModel() {
             override fun onFailure() {
             }
         })
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        scope.cancel()
     }
 
 }
