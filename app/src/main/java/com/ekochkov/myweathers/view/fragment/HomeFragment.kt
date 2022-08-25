@@ -31,26 +31,6 @@ class HomeFragment: Fragment() {
     lateinit var adapter: PointListAdapter
     lateinit var binding : FragmentHomeBinding
     private val viewModel : HomeFragmentViewModel by viewModels()
-    private lateinit var scope: CoroutineScope
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    @SuppressLint("MissingPermission")
-    private val permissionLocationLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        if (checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
-                if (location!=null) {
-                    viewModel.getCitiesNearbyLocation(location.latitude, location.longitude)
-                }
-            }
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,54 +50,12 @@ class HomeFragment: Fragment() {
         binding.recyclerView.addItemDecoration(PointItemOffsetsDecoration(requireContext()))
 
         viewModel.pointsListLiveData.observe(viewLifecycleOwner) { cityList->
-            cityList.forEach {
-                Log.d("BMTH", it.toString())
-            }
             updateRecyclerView(cityList)
-        }
-
-        scope = CoroutineScope(Dispatchers.IO).also { scope ->
-            scope.launch {
-                viewModel.pointsListData.collect {
-                    withContext(Dispatchers.Main) {
-                        updateRecyclerView(it)
-                    }
-                }
-            }
         }
 
         binding.fabAdd.setOnClickListener {
             (activity as MainActivity).openAddPointFragment()
         }
-
-        if (checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
-                if (location!=null) {
-                    viewModel.getCitiesNearbyLocation(location.latitude, location.longitude)
-                }
-            }
-        } else {
-            requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        scope.cancel()
-    }
-
-    private fun requestPermission(permission: String) {
-        when (permission) {
-            Manifest.permission.ACCESS_COARSE_LOCATION -> {
-                permissionLocationLauncher.launch(permission)
-            }
-        }
-    }
-
-    private fun checkPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            permission) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun updateRecyclerView(lists: List<Point>) {
