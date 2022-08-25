@@ -12,7 +12,7 @@ interface PointDao {
     fun getPoint(id: Int) : Point?
 
     @Query("SELECT * FROM ${AppDatabase.POINTS_TABLE_NAME}")
-    fun getPoints() : Flow<List<Point>>
+    fun getPointsFlow() : Flow<List<Point>>
 
     @Update
     fun updateUser(point: Point)
