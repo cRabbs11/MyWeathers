@@ -18,8 +18,15 @@ import kotlin.coroutines.suspendCoroutine
 class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterface,
 private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao) {
 
-    fun getPoints() : Flow<List<Point>> {
-        return pointDao.getPoints()
+    suspend fun getCitiesPoints() = geoDBRetrofitInterface.getCitiesSuspend(
+        API_Constants.GEO_DB_PARAMETER_LIMIT_10,
+        API_Constants.GEO_DB_PARAMETER_TYPES_CITY,
+        API_Constants.GEO_DB_PARAMETER_COUNTRY_RU,
+        API_Constants.GEO_DB_PARAMETER_POPULATION_1M)
+
+
+    fun getPointsFlow() : Flow<List<Point>> {
+        return pointDao.getPointsFlow()
     }
 
     suspend fun savePoint(point: Point): Long {
