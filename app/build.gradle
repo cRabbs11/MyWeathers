@@ -81,4 +81,7 @@ dependencies {
     //для простой инициализации ViewModel
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
 }

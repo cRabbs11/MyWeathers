@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import java.util.concurrent.Executors
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -102,8 +103,8 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
             }
 
             override fun onFailure(call: Call<OpenWeatherCurrentDataDTO>, t: Throwable) {
-                Log.d("BMTH","onFailure")
-                Log.d("BMTH", t.printStackTrace().toString())
+                Timber.tag("BMTH").d("onFailure")
+                Timber.tag("BMTH").d(t.printStackTrace().toString())
             }
         })
     }
@@ -114,8 +115,8 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
         val locationId = latString+lonString
         geoDBRetrofitInterface.getNearCities(locationId).enqueue(object: Callback<GeoDBNearbyCitiesDataDTO> {
             override fun onResponse(call: Call<GeoDBNearbyCitiesDataDTO>, response: Response<GeoDBNearbyCitiesDataDTO>) {
-                Log.d("BMTH","onResponse")
-                Log.d("BMTH",response.body().toString())
+                Timber.tag("BMTH").d("onResponse")
+                Timber.tag("BMTH").d(response.body().toString())
                 if (response.isSuccessful) {
                     val list = response.body()?.toCityList()
                     if (list != null) {
