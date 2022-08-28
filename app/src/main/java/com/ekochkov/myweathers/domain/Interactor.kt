@@ -109,8 +109,8 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
     }
 
     private fun getCitiesNearbyLocation(lat: Double, lon: Double, listener: ResponseCallback<List<Point>>) {
-        val latString = if (lat<0) {"-$lat"} else {"+$lat" }
-        val lonString = if (lon<0) {"-$lon"} else {"+$lon" }
+        val latString = if (lat < 0) "-$lat" else "+$lat"
+        val lonString = if (lon < 0) "-$lon" else "+$lon"
         val locationId = latString+lonString
         geoDBRetrofitInterface.getNearCities(locationId).enqueue(object: Callback<GeoDBNearbyCitiesDataDTO> {
             override fun onResponse(call: Call<GeoDBNearbyCitiesDataDTO>, response: Response<GeoDBNearbyCitiesDataDTO>) {
@@ -118,7 +118,7 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
                 Log.d("BMTH",response.body().toString())
                 if (response.isSuccessful) {
                     val list = response.body()?.toCityList()
-                    if (list!=null) {
+                    if (list != null) {
                         listener.onSuccess(list)
                     } else {
                         listener.onFailure()

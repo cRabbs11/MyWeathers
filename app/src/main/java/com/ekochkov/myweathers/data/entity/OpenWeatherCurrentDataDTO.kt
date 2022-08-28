@@ -21,5 +21,5 @@ fun OpenWeatherCurrentDataDTO.toWeather(): Weather {
         temp_max = main.temp_max.toInt(),
         temp_min = main.temp_min.toInt(),
         description = weather[0].description,
-        iconId = weather[0].icon)
+        iconId = weather.first().icon)
 }
