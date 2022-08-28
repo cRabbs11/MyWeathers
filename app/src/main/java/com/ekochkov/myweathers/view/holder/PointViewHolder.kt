@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ekochkov.myweathers.R
 import com.ekochkov.myweathers.data.entity.Point
 import com.ekochkov.myweathers.databinding.ItemPointBinding
+import com.ekochkov.myweathers.utils.API_Constants
 
 class PointViewHolder(private val binding: ItemPointBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(point: Point) {
@@ -22,16 +23,16 @@ class PointViewHolder(private val binding: ItemPointBinding) : RecyclerView.View
 
     private fun getIcon(icon: String?) : Int {
         return when (icon) {
-            "01d" -> return R.drawable.icon_sun_day
-            "01n" -> return R.drawable.icon_sun_day
-            "02d" -> return R.drawable.icon_cloudy
-            "02n" -> return R.drawable.icon_cloudy
-            "03d" -> return R.drawable.icon_cloud
-            "03n" -> return R.drawable.icon_cloud
-            "04d" -> return R.drawable.icon_overcast_cloudy
-            "04n" -> return R.drawable.icon_overcast_cloudy
-            "10d" -> return R.drawable.icon_light_rain_day
-            "10n" -> return R.drawable.icon_light_rain_day
+            API_Constants.ICON_SUN_DAY -> return R.drawable.icon_sun_day
+            API_Constants.ICON_SUN_NIGHT -> return R.drawable.icon_sun_day
+            API_Constants.ICON_CLOUDY_DAY -> return R.drawable.icon_cloudy
+            API_Constants.ICON_CLOUDY_NIGHT -> return R.drawable.icon_cloudy
+            API_Constants.ICON_CLOUD_DAY -> return R.drawable.icon_cloud
+            API_Constants.ICON_CLOUD_NIGHT -> return R.drawable.icon_cloud
+            API_Constants.ICON_OVERCAST_CLOUDY_DAY -> return R.drawable.icon_overcast_cloudy
+            API_Constants.ICON_OVERCAST_CLOUDY_NIGHT -> return R.drawable.icon_overcast_cloudy
+            API_Constants.ICON_LIGHT_RAIN_DAY -> return R.drawable.icon_light_rain_day
+            API_Constants.ICON_LIGHT_RAIN_NIGHT -> return R.drawable.icon_light_rain_day
             else -> return 0
         }
     }

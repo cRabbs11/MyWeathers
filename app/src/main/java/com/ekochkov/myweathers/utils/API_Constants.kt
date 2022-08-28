@@ -13,4 +13,15 @@ object API_Constants {
 
     const val OPEN_WEATHER_PARAMETER_API_KEY_NAME = "appid"
     const val OPEN_WEATHER_PARAMETER_UNITS_VALUE = "metric"
+
+    const val ICON_SUN_DAY = "01d"
+    const val ICON_SUN_NIGHT = "01n"
+    const val ICON_CLOUDY_DAY = "02d"
+    const val ICON_CLOUDY_NIGHT = "02n"
+    const val ICON_CLOUD_DAY = "03d"
+    const val ICON_CLOUD_NIGHT = "03n"
+    const val ICON_OVERCAST_CLOUDY_DAY = "04d"
+    const val ICON_OVERCAST_CLOUDY_NIGHT = "04n"
+    const val ICON_LIGHT_RAIN_DAY = "10d"
+    const val ICON_LIGHT_RAIN_NIGHT = "10n"
 }
