@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ekochkov.myweathers">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyWeathers"
         tools:targetApi="31"
-        android:name=".utils.App">
+        android:name=".utils.App"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".view.activity.MainActivity"
             android:exported="true">
@@ -23,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="${GOOGLE_MAP_API_KEY}"/>
+</application>
 
 </manifest>

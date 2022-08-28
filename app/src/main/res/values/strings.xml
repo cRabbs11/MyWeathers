@@ -17,4 +17,9 @@
     <string name="add_by_manual_coords">ввести координаты</string>
     <string name="add_by_input_city">ввести город</string>
     <string name="add_by_google_map">выбрать на карте</string>
+
+    <string name="point_is_saved">место сохранено</string>
+    <string name="enter_point_name">введите название места</string>
+    <string name="map_is_loading">идет загрузка карты</string>
+
 </resources>

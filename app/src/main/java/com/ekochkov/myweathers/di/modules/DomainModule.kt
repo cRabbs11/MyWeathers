@@ -1,8 +1,24 @@
 package com.ekochkov.myweathers.di.modules
 
+import android.content.Context
+import com.ekochkov.myweathers.data.dao.PointDao
+import com.ekochkov.myweathers.domain.Interactor
+import com.ekochkov.myweathers.utils.GeoDBRetrofitInterface
+import com.ekochkov.myweathers.utils.OpenWeatherRetrofitInterface
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 @Module
-class DomainModule {
-    // тут будет предоставление интерактора для описания бизнес логики
+class DomainModule(val context: Context) {
+
+    @Provides
+    fun provideContext(): Context = context
+
+    @Singleton
+    @Provides
+    fun provideInteractor(
+        weatherRetrofit: OpenWeatherRetrofitInterface,
+        geoDBRetrofit: GeoDBRetrofitInterface,
+        pointDao: PointDao) = Interactor(weatherRetrofit, geoDBRetrofit, pointDao)
 }

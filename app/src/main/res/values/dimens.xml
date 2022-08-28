@@ -4,6 +4,17 @@
     <dimen name="margin_normal">24dp</dimen>
     <dimen name="text_size_big">30sp</dimen>
 
+    <dimen name="image_h_size_small">60dp</dimen>
+    <dimen name="image_w_size_small">60dp</dimen>
+
     <dimen name="image_h_size">200dp</dimen>
     <dimen name="image_w_size">200dp</dimen>
+
+    <dimen name="corner_radius_normal">15dp</dimen>
+
+    <dimen name="offset_5">5dp</dimen>
+    <dimen name="offset_7">7dp</dimen>
+    <dimen name="offset_15">15dp</dimen>
+
+    <dimen name="padding_88">88dp</dimen>
 </resources>
