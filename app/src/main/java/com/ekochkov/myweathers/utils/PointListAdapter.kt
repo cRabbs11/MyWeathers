@@ -7,7 +7,7 @@ import com.ekochkov.myweathers.data.entity.Point
 import com.ekochkov.myweathers.databinding.ItemPointBinding
 import com.ekochkov.myweathers.view.holder.PointViewHolder
 
-class PointListAdapter() : RecyclerView.Adapter<PointViewHolder>() {
+class PointListAdapter(private val listener: PointClickListener) : RecyclerView.Adapter<PointViewHolder>() {
 
     var pointsList = arrayListOf<Point>()
 
@@ -17,10 +17,14 @@ class PointListAdapter() : RecyclerView.Adapter<PointViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PointViewHolder, position: Int) {
-        holder.bind(pointsList[position])
+        holder.bind(pointsList[position], listener)
     }
 
     override fun getItemCount(): Int {
         return pointsList.size
+    }
+
+    interface PointClickListener {
+        fun onPointClick(point: Point)
     }
 }

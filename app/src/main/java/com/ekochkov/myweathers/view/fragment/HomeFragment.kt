@@ -44,7 +44,11 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PointListAdapter()
+        adapter = PointListAdapter(object: PointListAdapter.PointClickListener {
+            override fun onPointClick(point: Point) {
+                (activity as MainActivity).openPointPageFragment(point)
+            }
+        })
         binding.recyclerView.adapter = adapter
 
         binding.recyclerView.addItemDecoration(PointItemOffsetsDecoration(requireContext()))
