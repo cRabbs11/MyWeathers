@@ -21,5 +21,9 @@ fun OpenWeatherCurrentDataDTO.toWeather(): Weather {
         temp_max = main.temp_max.toInt(),
         temp_min = main.temp_min.toInt(),
         description = weather[0].description,
-        iconId = weather.first().icon)
+        iconId = weather.first().icon,
+        windDeg = wind.deg,
+        windSpeed = wind.speed,
+        humidity = main.humidity,
+        pressure = (main.pressure.toDouble()*0.750062).toInt())
 }
