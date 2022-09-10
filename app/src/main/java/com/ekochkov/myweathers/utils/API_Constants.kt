@@ -12,7 +12,7 @@ object API_Constants {
     const val GEO_DB_PARAMETER_POPULATION_1M = 1000000
 
     const val OPEN_WEATHER_PARAMETER_API_KEY_NAME = "appid"
-    const val OPEN_WEATHER_PARAMETER_UNITS_VALUE = "metric"
+    const val OPEN_WEATHER_PARAMETER_UNITS_VALUE_METRIC = "metric"
 
     const val ICON_SUN_DAY = "01d"
     const val ICON_SUN_NIGHT = "01n"
