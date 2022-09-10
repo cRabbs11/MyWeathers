@@ -16,6 +16,7 @@ data class Point (
     @ColumnInfo(name = "longitude") val longitude: Double,
     @ColumnInfo(name = "name") val name: String,
     @Ignore var weather: Weather? = null,
+    @Ignore var weatherHourList: List<WeatherHour>? = null,
     @ColumnInfo(name = "createdByUser") val createdByUser: Boolean? = false
 ): Parcelable {
     constructor(id: Int, latitude: Double, longitude: Double, name: String, createdByUser: Boolean) : this(
@@ -24,6 +25,7 @@ data class Point (
         longitude = longitude,
         name = name,
         weather = null,
+        weatherHourList = null,
         createdByUser = createdByUser
     )
 }
