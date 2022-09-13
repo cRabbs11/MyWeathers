@@ -1,5 +1,7 @@
 package com.ekochkov.myweathers.data.entity
 
+import com.ekochkov.myweathers.utils.Constants
+
 data class OpenWeatherCurrentDataDTO (
     val base: String,
     val clouds: CloudsDTO,
@@ -25,5 +27,5 @@ fun OpenWeatherCurrentDataDTO.toWeather(): Weather {
         windDeg = wind.deg,
         windSpeed = wind.speed,
         humidity = main.humidity,
-        pressure = (main.pressure.toDouble()*0.750062).toInt())
+        pressure = (main.pressure.toDouble() * Constants.WEATHER_PRESSURE_PHA_TO_MM_KOEF).toInt())
 }

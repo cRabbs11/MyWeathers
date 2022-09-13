@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ekochkov.myweathers.data.entity.WeatherHour
 import com.ekochkov.myweathers.databinding.ItemWeatherHourBinding
+import com.ekochkov.myweathers.utils.Constants
 import com.ekochkov.myweathers.utils.WeatherIconHelper
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,7 +46,7 @@ class WeatherHourViewHolder(
         //время прогноза "день"
         timeDay = if (stringCurrentDay==timeDay) {
             TIME_TODAY
-        } else if ((stringCurrentDay.toInt()+1 == timeDay.toInt() && stringCurrentMonth==timeMonth) ||
+        } else if ((stringCurrentDay.toInt()+Constants.ONE_DAY == timeDay.toInt() && stringCurrentMonth==timeMonth) ||
             stringCurrentDay.toInt() > timeDay.toInt() && stringCurrentMonth.toInt()+1 == timeMonth.toInt()) {
             TIME_TOMORROW
         } else {
