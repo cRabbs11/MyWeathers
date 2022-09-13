@@ -62,7 +62,7 @@ class PointPageFragment: Fragment() {
             binding.pointPage.windText.text = "${point.weather?.windSpeed?.toInt()} м/с"
 
             val forecast = point.weatherHourList
-            if (forecast!=null) {
+            if (forecast != null) {
                 updateRecyclerView(forecast)
             }
 
