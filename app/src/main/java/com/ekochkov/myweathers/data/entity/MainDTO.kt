@@ -6,5 +6,9 @@ data class MainDTO(
     val pressure: Int,
     val temp: Double,
     val temp_max: Double,
-    val temp_min: Double
+    val temp_min: Double,
+    val grnd_level: Int?,
+    val sea_level: Int?,
+    val temp_kf: Double?,
+
 )

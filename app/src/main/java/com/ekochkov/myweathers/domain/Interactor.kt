@@ -1,6 +1,5 @@
 package com.ekochkov.myweathers.domain
 
-import android.util.Log
 import com.ekochkov.myweathers.data.dao.PointDao
 import com.ekochkov.myweathers.data.entity.*
 import com.ekochkov.myweathers.utils.API_Constants
@@ -87,7 +86,7 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
     }
 
     private fun getWeatherByCoords(lat: String, lon: String, listener: ResponseCallback<Weather>) {
-        weatherRetrofitInterface.getCurrentByCoord(API_KEYS.WEATHER_API_KEY, lat, lon, API_Constants.OPEN_WEATHER_PARAMETER_UNITS_VALUE).enqueue(object:
+        weatherRetrofitInterface.getCurrentByCoord(API_KEYS.WEATHER_API_KEY, lat, lon, API_Constants.OPEN_WEATHER_PARAMETER_UNITS_VALUE_METRIC).enqueue(object:
             Callback<OpenWeatherCurrentDataDTO> {
             override fun onResponse(call: Call<OpenWeatherCurrentDataDTO>, response: Response<OpenWeatherCurrentDataDTO>) {
                 if (response.isSuccessful) {
@@ -105,6 +104,32 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
             override fun onFailure(call: Call<OpenWeatherCurrentDataDTO>, t: Throwable) {
                 Timber.tag("BMTH").d("onFailure")
                 Timber.tag("BMTH").d(t.printStackTrace().toString())
+            }
+        })
+    }
+
+    fun getForecastByCoords(lat: String, lon: String, listener: ResponseCallback<List<WeatherHour>>) {
+        Timber.d("getForecastByCoords ...")
+        weatherRetrofitInterface.getForecastByCoord(API_KEYS.WEATHER_API_KEY, lat, lon, API_Constants.OPEN_WEATHER_PARAMETER_UNITS_VALUE_METRIC).enqueue(object:
+            Callback<OpenWeatherForecastDataDTO> {
+            override fun onResponse(
+                call: Call<OpenWeatherForecastDataDTO>,
+                response: Response<OpenWeatherForecastDataDTO>
+            ) {
+                if(response.isSuccessful) {
+                    val list = response.body()?.toWeatherHourList()
+                    if (list != null) {
+                        listener.onSuccess(list)
+                    } else {
+                        listener.onFailure()
+                    }
+                } else {
+                    listener.onFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<OpenWeatherForecastDataDTO>, t: Throwable) {
+                listener.onFailure()
             }
         })
     }

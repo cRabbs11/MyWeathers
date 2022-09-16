@@ -17,4 +17,9 @@
     <dimen name="offset_15">15dp</dimen>
 
     <dimen name="padding_88">88dp</dimen>
+
+    <dimen name="width_100">100dp</dimen>
+
+    <dimen name="height_200">200dp</dimen>
+    <dimen name="height_300">300dp</dimen>
 </resources>
