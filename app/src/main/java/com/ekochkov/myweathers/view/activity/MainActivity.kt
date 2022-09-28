@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         launchFragment(HomeFragment())
+        val bundle = intent.extras?.getBundle(Constants.BUNDLE_KEY)
+
+        bundle?.getParcelable<Point>(Constants.BUNDLE_KEY_POINT)?.let { point ->
+            openPointPageFragment(point)
+        }
     }
 
     private fun launchFragment(fragment: Fragment, tag: String?=null) {

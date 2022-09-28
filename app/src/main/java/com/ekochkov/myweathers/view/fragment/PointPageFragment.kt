@@ -12,6 +12,7 @@ import com.ekochkov.myweathers.databinding.FragmentPointPageCoordinatorBinding
 import com.ekochkov.myweathers.diff.WeatherHourDiff
 import com.ekochkov.myweathers.utils.*
 import com.ekochkov.myweathers.view.activity.MainActivity
+import com.ekochkov.myweathers.view.notification.NotificationHelper
 import com.ekochkov.myweathers.viewModel.PointPageFragmentViewModel
 import com.ekochkov.myweathers.viewModel.factory
 import timber.log.Timber
@@ -68,6 +69,12 @@ class PointPageFragment: Fragment() {
 
             point.weatherHourList?.forEach {
                 Timber.d("${it} \n")
+            }
+
+            binding.fabNotify.setOnClickListener {
+                Timber.d("click")
+                val currentPoint = point
+                NotificationHelper.createNotification(requireContext(), currentPoint)
             }
         }
     }
