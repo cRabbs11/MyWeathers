@@ -40,8 +40,4 @@ object NotificationHelper {
 
         return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
-
-    fun createNotificationChannel() {
-
-    }
 }
