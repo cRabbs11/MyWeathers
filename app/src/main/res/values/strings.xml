@@ -21,5 +21,6 @@
     <string name="point_is_saved">место сохранено</string>
     <string name="enter_point_name">введите название места</string>
     <string name="map_is_loading">идет загрузка карты</string>
+    <string name="notifications">уведомления</string>
 
 </resources>
