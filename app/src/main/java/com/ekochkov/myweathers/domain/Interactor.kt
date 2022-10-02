@@ -26,6 +26,9 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
         API_Constants.GEO_DB_PARAMETER_COUNTRY_RU,
         API_Constants.GEO_DB_PARAMETER_POPULATION_1M)
 
+    fun getPointFlow(id: Int): Flow<Point?> {
+        return pointDao.getPointFlow(id)
+    }
 
     fun getPointsFlow() : Flow<List<Point>> {
         return pointDao.getPointsFlow()

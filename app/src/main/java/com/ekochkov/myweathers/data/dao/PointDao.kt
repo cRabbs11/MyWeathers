@@ -11,6 +11,9 @@ interface PointDao {
     @Query("SELECT * FROM ${AppDatabase.POINTS_TABLE_NAME} WHERE id LIKE:id")
     fun getPoint(id: Int) : Point?
 
+    @Query("SELECT * FROM ${AppDatabase.POINTS_TABLE_NAME} WHERE id LIKE:id")
+    fun getPointFlow(id: Int) : Flow<Point?>
+
     @Query("SELECT * FROM ${AppDatabase.POINTS_TABLE_NAME}")
     fun getPointsFlow() : Flow<List<Point>>
 
