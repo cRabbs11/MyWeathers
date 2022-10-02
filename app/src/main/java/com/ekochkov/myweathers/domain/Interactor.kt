@@ -1,5 +1,6 @@
 package com.ekochkov.myweathers.domain
 
+import com.ekochkov.myweathers.data.PreferenceProvider
 import com.ekochkov.myweathers.data.dao.PointDao
 import com.ekochkov.myweathers.data.entity.*
 import com.ekochkov.myweathers.utils.API_Constants
@@ -16,7 +17,8 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterface,
-private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao) {
+private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao: PointDao, private val preference: PreferenceProvider
+) {
 
     suspend fun getCitiesPoints() = geoDBRetrofitInterface.getCitiesSuspend(
         API_Constants.GEO_DB_PARAMETER_LIMIT_10,
@@ -158,6 +160,19 @@ private val geoDBRetrofitInterface: GeoDBRetrofitInterface, private val pointDao
                 listener.onFailure()
             }
         })
+    }
+
+    fun getNotificationValue(): Boolean {
+        return preference.getNotificationValue()
+    }
+
+    fun getPreferencePointId(): Int {
+        return preference.getPointId()
+    }
+
+    fun setPreferencePointId(id: Int) {
+        preference.setNotificationValue(true)
+        preference.setPointId(id)
     }
 }
 
