@@ -21,14 +21,14 @@ class PreferenceProvider(context: Context) {
         return sharedPref.getBoolean(KEY_WEATHER_NOTIFICATION, false)
     }
 
-    fun setPointId(pointId: Int) {
+    fun setPointId(pointId: Long) {
         val editor = sharedPref.edit()
-        val put = editor.putInt(KEY_POINT_NOTIFICATION, pointId)
+        val put = editor.putLong(KEY_POINT_NOTIFICATION, pointId)
         put.apply()
     }
 
-    fun getPointId(): Int {
-        return sharedPref.getInt(KEY_POINT_NOTIFICATION, DEFAULT_POINT_NOTIFICATION)
+    fun getPointId(): Long {
+        return sharedPref.getLong(KEY_POINT_NOTIFICATION, DEFAULT_POINT_NOTIFICATION)
     }
 
 
@@ -45,6 +45,6 @@ class PreferenceProvider(context: Context) {
         private const val KEY_FIRST_LAUNCH = "first_launch"
         private const val KEY_WEATHER_NOTIFICATION = "notification"
         private const val KEY_POINT_NOTIFICATION = "point_notification"
-        private const val DEFAULT_POINT_NOTIFICATION = -1
+        const val DEFAULT_POINT_NOTIFICATION = -1L
     }
 }

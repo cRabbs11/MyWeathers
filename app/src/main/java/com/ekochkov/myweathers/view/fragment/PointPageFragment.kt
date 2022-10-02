@@ -81,8 +81,7 @@ class PointPageFragment: Fragment() {
             }
 
             binding.fabNotify.setOnClickListener {
-                Timber.d("click")
-                viewModel.createNotification()
+                viewModel.changeNotificationValue()
                 val currentPoint = point
                 NotificationHelper.createDelayNotification(requireContext(), currentPoint, 10000)
             }

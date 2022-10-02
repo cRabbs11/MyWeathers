@@ -2,6 +2,7 @@ package com.ekochkov.myweathers.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ekochkov.myweathers.data.PreferenceProvider
 import com.ekochkov.myweathers.domain.Interactor
 import com.ekochkov.myweathers.utils.App
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +24,15 @@ class SettingsFragmentViewModel: ViewModel() {
 
         notificationValueLiveData.postValue(interactor.getNotificationValue())
         updateNotificationPointLiveData()
+    }
+
+    fun changeNotificationValue(value: Boolean) {
+        if (interactor.getPreferencePointId()!=PreferenceProvider.DEFAULT_POINT_NOTIFICATION) {
+            interactor.setNotificationValue(value)
+            notificationValueLiveData.postValue(interactor.getNotificationValue())
+        } else {
+            notificationValueLiveData.postValue(false)
+        }
     }
 
     private fun updateNotificationPointLiveData() {

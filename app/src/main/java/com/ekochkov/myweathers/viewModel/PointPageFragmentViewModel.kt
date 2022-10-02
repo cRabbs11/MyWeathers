@@ -30,17 +30,37 @@ class PointPageFragmentViewModel(private val point: Point): ViewModel() {
         updateNotificationValue()
     }
 
-    fun createNotification() {
+    fun changeNotificationValue() {
+        if (getNotificationValueForPoint()) {
+            interactor.setNotificationValue(false)
+            updateNotificationValue()
+        } else {
+            setNotification()
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        scope.cancel()
+    }
+
+    private fun setNotification() {
         CoroutineScope(Dispatchers.IO).launch {
             val id = interactor.savePoint(point)
-            interactor.setPreferencePointId(id.toInt())
+            interactor.setNotificationValue(true)
+            interactor.setPreferencePointId(id)
             updateNotificationValue()
         }
     }
 
     private fun updateNotificationValue() {
-        val notificationPointId = interactor.getPreferencePointId()
-        notificationLiveData.postValue(notificationPointId==point.id)
+        notificationLiveData.postValue(getNotificationValueForPoint())
+    }
+
+    private fun getNotificationValueForPoint(): Boolean {
+        val notificationPointId = interactor.getPreferencePointId().toInt()
+        val notificationIsOn = interactor.getNotificationValue()
+        return notificationIsOn && notificationPointId==point.id
     }
 
     private fun getForecast(point: Point) {
@@ -56,10 +76,5 @@ class PointPageFragmentViewModel(private val point: Point): ViewModel() {
                 })
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        scope.cancel()
     }
 }

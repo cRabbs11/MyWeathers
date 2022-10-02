@@ -29,7 +29,7 @@ class SettingsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.notificationSetting.switchBtn.setOnCheckedChangeListener { compoundButton, boolean ->
-            Timber.d("boolean = $boolean")
+            viewModel.changeNotificationValue(boolean)
         }
 
         viewModel.notificationPointLiveData.observe(viewLifecycleOwner) {
@@ -37,7 +37,9 @@ class SettingsFragment: Fragment() {
         }
 
         viewModel.notificationValueLiveData.observe(viewLifecycleOwner) {
-            binding.notificationSetting.switchBtn.isChecked = it
+            if (binding.notificationSetting.switchBtn.isChecked!=it) {
+                binding.notificationSetting.switchBtn.isChecked = it
+            }
         }
     }
 }
