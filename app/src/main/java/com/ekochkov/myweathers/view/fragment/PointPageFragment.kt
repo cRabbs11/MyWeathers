@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
+import com.ekochkov.myweathers.R
 import com.ekochkov.myweathers.data.entity.WeatherHour
 import com.ekochkov.myweathers.databinding.FragmentPointPageCoordinatorBinding
 import com.ekochkov.myweathers.diff.WeatherHourDiff
@@ -50,6 +51,14 @@ class PointPageFragment: Fragment() {
         binding.pointPage.recyclerView.adapter = adapter
         binding.pointPage.recyclerView.addItemDecoration(PointItemOffsetsDecoration(requireContext()))
 
+        viewModel.notificationLiveData.observe(viewLifecycleOwner) { notification ->
+            if (notification) {
+                binding.fabNotify.setImageResource(R.drawable.ic_baseline_notifications_24)
+            } else {
+                binding.fabNotify.setImageResource(R.drawable.ic_baseline_notifications_off_24)
+            }
+        }
+
         viewModel.pointLiveData.observe(viewLifecycleOwner) { point ->
             Timber.d("point = $point")
             binding.toolbar.title = point.name
@@ -73,8 +82,9 @@ class PointPageFragment: Fragment() {
 
             binding.fabNotify.setOnClickListener {
                 Timber.d("click")
+                viewModel.createNotification()
                 val currentPoint = point
-                NotificationHelper.createNotification(requireContext(), currentPoint)
+                NotificationHelper.createDelayNotification(requireContext(), currentPoint, 10000)
             }
         }
     }
