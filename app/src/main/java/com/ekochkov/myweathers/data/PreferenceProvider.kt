@@ -21,13 +21,13 @@ class PreferenceProvider(context: Context) {
         return sharedPref.getBoolean(KEY_WEATHER_NOTIFICATION, false)
     }
 
-    fun setPointId(pointId: Long) {
+    fun setNotificationPointId(pointId: Long) {
         val editor = sharedPref.edit()
         val put = editor.putLong(KEY_POINT_NOTIFICATION, pointId)
         put.apply()
     }
 
-    fun getPointId(): Long {
+    fun getNotificationPointId(): Long {
         return sharedPref.getLong(KEY_POINT_NOTIFICATION, DEFAULT_POINT_NOTIFICATION)
     }
 
