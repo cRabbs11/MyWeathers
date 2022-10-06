@@ -10,6 +10,7 @@ import com.ekochkov.myweathers.data.entity.Point
 import com.ekochkov.myweathers.utils.Constants
 import com.ekochkov.myweathers.view.fragment.*
 
+const val TAG_TIME_PICKER_FRAGMENT  ="TAG_TIME_PICKER_FRAGMENT"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
