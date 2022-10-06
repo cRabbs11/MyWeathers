@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class PointPageFragmentViewModel(private val point: Point): ViewModel() {
@@ -32,25 +33,16 @@ class PointPageFragmentViewModel(private val point: Point): ViewModel() {
 
     fun changeNotificationValue() {
         if (getNotificationValueForPoint()) {
-            interactor.setNotificationValue(false)
-            updateNotificationValue()
+            interactor.setNotificationOff()
         } else {
-            setNotification()
+            interactor.setNotificationOn(point)
         }
+        updateNotificationValue()
     }
 
     override fun onCleared() {
         super.onCleared()
         scope.cancel()
-    }
-
-    private fun setNotification() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val id = interactor.savePoint(point)
-            interactor.setNotificationValue(true)
-            interactor.setPreferencePointId(id)
-            updateNotificationValue()
-        }
     }
 
     private fun updateNotificationValue() {

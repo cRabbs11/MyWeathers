@@ -26,13 +26,13 @@ class SettingsFragmentViewModel: ViewModel() {
         updateNotificationPointLiveData()
     }
 
-    fun changeNotificationValue(value: Boolean) {
-        if (interactor.getPreferencePointId()!=PreferenceProvider.DEFAULT_POINT_NOTIFICATION) {
-            interactor.setNotificationValue(value)
-            notificationValueLiveData.postValue(interactor.getNotificationValue())
+    fun changedNotificationValue(value: Boolean) {
+        if (value && interactor.getPreferencePointId()!=PreferenceProvider.DEFAULT_POINT_NOTIFICATION) {
+            interactor.setNotificationOn()
         } else {
-            notificationValueLiveData.postValue(false)
+            interactor.setNotificationOff()
         }
+        notificationValueLiveData.postValue(interactor.getNotificationValue())
     }
 
     private fun updateNotificationPointLiveData() {
