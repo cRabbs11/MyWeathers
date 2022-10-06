@@ -26,5 +26,6 @@ class DomainModule(val context: Context) {
         weatherRetrofit: OpenWeatherRetrofitInterface,
         geoDBRetrofit: GeoDBRetrofitInterface,
         pointDao: PointDao,
-        preference: PreferenceProvider) = Interactor(weatherRetrofit, geoDBRetrofit, pointDao, preference)
+        preference: PreferenceProvider,
+        context: Context) = Interactor(weatherRetrofit, geoDBRetrofit, pointDao, preference, context)
 }
