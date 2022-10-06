@@ -22,5 +22,6 @@
     <string name="enter_point_name">введите название места</string>
     <string name="map_is_loading">идет загрузка карты</string>
     <string name="notifications">уведомления</string>
+    <string name="notification_time">время уведомления</string>
 
 </resources>
