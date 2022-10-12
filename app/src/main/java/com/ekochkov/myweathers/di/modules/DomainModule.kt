@@ -1,6 +1,7 @@
 package com.ekochkov.myweathers.di.modules
 
 import android.content.Context
+import com.ekochkov.myweathers.data.PreferenceProvider
 import com.ekochkov.myweathers.data.dao.PointDao
 import com.ekochkov.myweathers.domain.Interactor
 import com.ekochkov.myweathers.utils.GeoDBRetrofitInterface
@@ -17,8 +18,14 @@ class DomainModule(val context: Context) {
 
     @Singleton
     @Provides
+    fun providePreferences(context: Context) = PreferenceProvider(context)
+
+    @Singleton
+    @Provides
     fun provideInteractor(
         weatherRetrofit: OpenWeatherRetrofitInterface,
         geoDBRetrofit: GeoDBRetrofitInterface,
-        pointDao: PointDao) = Interactor(weatherRetrofit, geoDBRetrofit, pointDao)
+        pointDao: PointDao,
+        preference: PreferenceProvider,
+        context: Context) = Interactor(weatherRetrofit, geoDBRetrofit, pointDao, preference, context)
 }
