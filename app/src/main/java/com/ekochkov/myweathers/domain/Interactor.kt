@@ -209,7 +209,7 @@ class Interactor(private val weatherRetrofitInterface: OpenWeatherRetrofitInterf
         preference.setNotificationValue(false)
         GlobalScope.launch {
             val pointId = preference.getNotificationPointId()
-            if (pointId!=PreferenceProvider.DEFAULT_POINT_NOTIFICATION) {
+            if (pointId != PreferenceProvider.DEFAULT_POINT_NOTIFICATION) {
                 val point = getPoint(pointId.toInt())
                 point?.let {
                     NotificationHelper.cancelDelayNotification(context, point)

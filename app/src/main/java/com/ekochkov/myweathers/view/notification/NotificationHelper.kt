@@ -11,7 +11,6 @@ import com.ekochkov.myweathers.R
 import com.ekochkov.myweathers.data.entity.Point
 import com.ekochkov.myweathers.receivers.NotificationReceiver
 import com.ekochkov.myweathers.utils.Constants
-import com.ekochkov.myweathers.utils.Constants.WEATHER_NOT_FOUND
 import com.ekochkov.myweathers.utils.DateConverter
 import com.ekochkov.myweathers.utils.NotificationConstants
 import com.ekochkov.myweathers.view.activity.MainActivity
@@ -19,9 +18,9 @@ import com.ekochkov.myweathers.view.activity.MainActivity
 object NotificationHelper {
 
     const val TIME_SECOND_IN_MILLIS = 1000L
-    const val TIME_MINUTE_IN_MILLIS = TIME_SECOND_IN_MILLIS*60L
-    const val TIME_HOUR_IN_MILLIS = TIME_MINUTE_IN_MILLIS*60L
-    const val TIME_DAY_IN_MILLIS = TIME_HOUR_IN_MILLIS*24L
+    const val TIME_MINUTE_IN_MILLIS = TIME_SECOND_IN_MILLIS * 60L
+    const val TIME_HOUR_IN_MILLIS = TIME_MINUTE_IN_MILLIS * 60L
+    const val TIME_DAY_IN_MILLIS = TIME_HOUR_IN_MILLIS * 24L
     const val TIME_NOTIFICATION_HOUR_MINUTE = "08.00"
 
     fun createDelayNotification(context : Context, point: Point, delayInMillis: Long) {
@@ -62,7 +61,7 @@ object NotificationHelper {
         val builder = NotificationCompat.Builder(context, NotificationConstants.CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_baseline_cloud_queue_24)
             setContentTitle(point.name)
-            val contentText = "${point.weather?.temp}°C ${point.weather?.description}"?: WEATHER_NOT_FOUND
+            val contentText = "${point.weather?.temp}°C ${point.weather?.description}"?: context.getString(R.string.weather_not_found)
             setContentText(contentText)
             priority = NotificationCompat.PRIORITY_DEFAULT
             setContentIntent(getPendingIntent(context, point))

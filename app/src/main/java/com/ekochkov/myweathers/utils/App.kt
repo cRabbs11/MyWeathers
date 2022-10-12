@@ -42,8 +42,8 @@ class App: Application() {
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //Задаем имя, описание и важность канала
-            val name = "MyWeathersChannel"
-            val descriptionText = "MyWeathers notification Channel"
+            val name = Constants.NOTIFICATION_CHANNEL_NAME
+            val descriptionText = Constants.NOTIFICATION_CHANNEL_DESCRIPTION
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             //Создаем канал, передав в параметры его ID(строка), имя(строка), важность(константа)
             val mChannel = NotificationChannel(CHANNEL_ID, name, importance)

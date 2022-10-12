@@ -2,6 +2,9 @@ package com.ekochkov.myweathers.utils
 
 object Constants {
 
+    const val NOTIFICATION_CHANNEL_NAME = "MyWeathersChannel"
+    const val NOTIFICATION_CHANNEL_DESCRIPTION = "MyWeathers notification Channel"
+
     const val BUNDLE_KEY_POINT = "Point"
     const val BUNDLE_KEY = "bundle"
 
@@ -21,5 +24,4 @@ object Constants {
     const val OPEN_WEATHER_ICON_LIGHT_RAIN_DAY = "10d"
     const val OPEN_WEATHER_ICON_LIGHT_RAIN_NIGHT = "10n"
     const val ONE_DAY = 1
-    const val WEATHER_NOT_FOUND = "прогноз не найден"
 }

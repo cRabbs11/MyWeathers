@@ -65,8 +65,8 @@ class SettingsFragment: Fragment() {
             val hourInt = timePicker.hour
             val minuteInt = timePicker.minute
 
-            val hour = if (hourInt <=9) "0$hourInt" else "$hourInt"
-            val minute = if (minuteInt <=9) "0$minuteInt" else "$minuteInt"
+            val hour = if (hourInt <= 9) "0$hourInt" else "$hourInt"
+            val minute = if (minuteInt <= 9) "0$minuteInt" else "$minuteInt"
             val setTime = "$hour.$minute"
 
             val currentDate = DateConverter.fromLongToText(System.currentTimeMillis(), DateConverter.FORMAT_DD_MM_YYYY)
